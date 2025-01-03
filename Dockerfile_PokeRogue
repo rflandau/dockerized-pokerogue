@@ -1,0 +1,14 @@
+FROM node:23.5
+
+# version is the date of the last release
+# plus the most recent beta branch commit id included
+LABEL version="2024-12-03#206419c"
+LABEL author="rflandau.carrd.co"
+
+RUN git clone https://github.com/pagefaultgames/pokerogue.git
+WORKDIR /pokerogue
+RUN npm install
+
+EXPOSE 8000
+
+ENTRYPOINT [ "npm", "run", "start:dev", "--", "--host" ]
